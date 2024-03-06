@@ -29,9 +29,21 @@ const restaurant = {
       close: 24,
     },
   },
+
+  //In the below function, we set an object as an argument and set default values to some of the properties that should be specified when the function gets called.
+  orderDelivery: function ({
+    starterIndex = 1,
+    mainIndex = 0,
+    time = '20:00',
+    address,
+  }) {
+    console.log(
+      `Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
+    );
+  },
 };
 
-//Destructuring
+//Destructuring Arrays
 //The code below should destructure the categories array in the restaurant object. The 'main' variable will copy the value of the first index of the categories array, and the 'secondary' variable will copy the value of the 3rd index of the same arra. Note that the 2nd index is skipped by adding a coma and a space next to the first variable.
 const [main, , secondary] = restaurant.categories;
 
@@ -43,6 +55,40 @@ const [i, , [j, k]] = nested;
 //Setting default values while destructuring
 const [p, q, r = 1] = [8, 9];
 //Here, p and q will copy the values of the array that is destructured, but r, since there is no third index in the array, would be undefined if we don't set a default value, which in this case is the '1';
+
+//Destructuring Objects
+//Similarily to arrays, we create a variable with curly braces that coincide with the names of the property of the object that we want to extract. As so:
+const { openingHours, categories } = restaurant;
+
+//We can also destructure and change the name of the new properties by adding the new name next to the name of the property after a colon like so:
+const {
+  name: restaurantName,
+  openingHours: hours,
+  categories: tagsOne,
+} = restaurant;
+//When we log restaurantName, hours, and tags, their values will be copied from the specified properties of the restaurant object.
+
+//Setting Default Values:
+const { menu = [], starterMenu: starters = [] } = restaurant;
+//Here, the default value of an empty array is given to both the menu and the starterMenu properties. menu doesn't exist in the object, so it will have that empty array as its value. starterMenu also gets renamed to "starters" and has a default value of an empty array in case it doesn't exist, but since it does, its value will be destructured from the restaurant object, so it will be: an array containing ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'].
+
+//Nested Objects
+//Inside of the openingsHours object, if we want to destructure the friday object and access the values of the open and close properties, we do this:
+const {
+  fri: { open, close },
+} = openingHours;
+console.log(open, close);
+
+//Destructuring objects that are passed as arguments in a function:
+//For the above method called OrderDelivery:
+
+restaurant.orderDelivery({
+  time: '22:30',
+  address: 'Via del Sole, 21',
+  mainIndex: 2,
+  starterIndex: 2,
+});
+//With the method created above, we are able to set default values for when the function is called and are also able to destructure its properties so that they can be used as needed. The only thing that is needed is that the object passed as an argument has the same property names as the destructured properties specified in the method created on lines 34-38.
 
 /*We're building a football betting app (soccer for my American friends 😅)!
 
@@ -60,7 +106,7 @@ TEST DATA FOR 6: Use players 'Davies', 'Muller', 'Lewandowski' and 'Kimmich'. Th
 
 GOOD LUCK 😀*/
 
-const game = {
+/* const game = {
   team1: 'Bayern Munich',
   team2: 'Borrussia Dortmund',
   players: [
@@ -107,3 +153,4 @@ const allPlayers = [...players1, ...players2];
 const players1Final = [...players1, 'Thiago', 'Coutinho', 'Perisic'];
 const { team1, draw, team2 } = game.odds;
 console.log(team1, draw, team2);
+ */
