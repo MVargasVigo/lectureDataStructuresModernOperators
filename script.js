@@ -41,6 +41,12 @@ const restaurant = {
       `Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
     );
   },
+
+  orderPasta: function (ing1, ing2, ing3) {
+    console.log(
+      `Here is your delicious pasta with ${ing1}, ${ing2}, and ${ing3}`
+    );
+  },
 };
 
 //Destructuring Arrays
@@ -89,6 +95,31 @@ restaurant.orderDelivery({
   starterIndex: 2,
 });
 //With the method created above, we are able to set default values for when the function is called and are also able to destructure its properties so that they can be used as needed. The only thing that is needed is that the object passed as an argument has the same property names as the destructured properties specified in the method created on lines 34-38.
+
+//Spread (...) takes all of the elements from an iterable (like a string, or array) and copies them in a different place.
+//We can only use the spread operator when building an array or when we pass values into a function.
+//We can only use the spread operator in a place where we would otherwise write values separated by commas.
+
+const newMenu = [...restaurant.mainMenu, 'Gnocci'];
+
+//Copy array
+const mainMenuCopy = [...restaurant.mainMenu];
+//Join 2 arrays
+const menuMerged = [...restaurant.starterMenu, ...restaurant.mainMenu];
+
+const str = 'Mauricio';
+const letters = [...str, ' ', 'S.'];
+
+const ingredients = ['Tomato', 'Garlic', 'Meat'];
+
+restaurant.orderPasta(...ingredients);
+
+//Objects
+const newRestaurant = { foundedIn: 1998, ...restaurant, founder: 'Guiseppe' };
+console.log(newRestaurant);
+//Copying an object
+const restaurantCopy = { ...restaurant };
+restaurantCopy.name = 'Ristorante Roma';
 
 /*We're building a football betting app (soccer for my American friends 😅)!
 
