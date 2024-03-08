@@ -102,9 +102,9 @@ restaurant.orderDelivery({
 
 const newMenu = [...restaurant.mainMenu, 'Gnocci'];
 
-//Copy array
+// Spread to Copy array
 const mainMenuCopy = [...restaurant.mainMenu];
-//Join 2 arrays
+// Spread to Join 2 arrays
 const menuMerged = [...restaurant.starterMenu, ...restaurant.mainMenu];
 
 const str = 'Mauricio';
@@ -114,12 +114,32 @@ const ingredients = ['Tomato', 'Garlic', 'Meat'];
 
 restaurant.orderPasta(...ingredients);
 
-//Objects
+//Spread in Objects
 const newRestaurant = { foundedIn: 1998, ...restaurant, founder: 'Guiseppe' };
 console.log(newRestaurant);
-//Copying an object
+//Spread to Copyan object
 const restaurantCopy = { ...restaurant };
 restaurantCopy.name = 'Ristorante Roma';
+
+//Rest: while spread is used to unpack elements from an array or string, rest does the opposite and packs the 'remaining' elements. Usually, the difference shows in the place of the operation. Spread is used on the right side of the =, while REST is used un the left side of the =. For example:
+
+const [a, b, ...others] = [1, 2, 3, 4, 5];
+//If we console log the others variable, the result will be an array containing the "rest" of the elements that weren't specified in the deconstructing of the array. So it will log [3, 4, 5] as the "others" variable.
+
+//We can use both spread and rest on both sides of the assignment operator. For example:
+
+const [pizza, , risotto, ...otherFood] = [
+  ...restaurant.mainMenu,
+  ...restaurant.starterMenu,
+];
+
+//In the code above, we destructure pizza, risotto and the "rest" of the plates in the menu from the joint array of mainMenu and starterMenu. The variables pizza and risotto will have the value of the strings with the same name due to the destructuring, while the otherFood variable will have the value of an array with all the other foods. Note that one element is skipped in the destructuring (before risotto).
+
+//Rest in destructuring objects
+
+const { sat, ...weekdays } = restaurant.openingHours;
+console.log(weekdays);
+//If we console log the weekdays variable, the result will be an object containing the friday and thursday objects.
 
 /*We're building a football betting app (soccer for my American friends 😅)!
 
