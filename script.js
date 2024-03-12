@@ -139,6 +139,13 @@ const [pizza, , risotto, ...otherFood] = [
 
 const { sat, ...weekdays } = restaurant.openingHours;
 console.log(weekdays);
+
+//Rest in functions
+const add = function (...numbers) {
+  console.log(numbers);
+  //In the code above, the rest operator is passed as a parameter in a function, which means that once the function is called, for example with the following parameters: add(5, 3, 7, 2); the console will log [5, 3, 7, 2]. It will pack the numbers passed as parameters into an array.
+};
+
 //If we console log the weekdays variable, the result will be an object containing the friday and thursday objects.
 
 /*We're building a football betting app (soccer for my American friends 😅)!
