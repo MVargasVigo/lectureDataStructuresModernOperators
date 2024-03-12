@@ -263,14 +263,14 @@ const {
   },
 } = books[0];
 
-console.log(bookRating);
+//console.log(bookRating);
 
 //2.6 Write a function called printBookInfo that has three parameters called title, author and year. This function should work for a single object passed as an argument, and it should log to the console information about the book in this format: "${title} by ${author}, ${year}".
 
 //If year is undefined (was not passed), it should be assigned with a default value of 'year unknown'.
 
 function printBookInfo({ title, author, year = 'year unknown' }) {
-  console.log(`${title} by ${author.join(', ')}, ${year}`);
+  //console.log(`${title} by ${author.join(', ')}, ${year}`);
 }
 
 //Spread Operator
@@ -282,7 +282,7 @@ const bookAuthors = [...books[0].author, ...books[1].author];
 //3.2: Write a function called spellWord that accepts a single string as an argument. This function should log to the console each letter of the argument separated by a space.
 
 function spellWord(string) {
-  console.log(...string);
+  //console.log(...string);
 }
 
 spellWord('Mauricio');
@@ -295,12 +295,12 @@ const [mainKeyword, ...rest] = books[0].keywords;
 /* 4.2 Destructure the second book from the books array into a variable called bookPublisher. The bookPublisher variable should be assigned with the value of the publisher property of the book object. Assign the rest of the properties to the restOfTheBook variable. */
 
 const { publisher: bookPublisher, ...restOfTheBook } = books[1];
-console.log(bookPublisher, restOfTheBook);
+//console.log(bookPublisher, restOfTheBook);
 
 /* 4.3 Write a function called printBookAuthorsCount that has two parameters called title and authors. The authors parameter should accept any number of arguments. This function should log to the console a string formatted like that: "The book "${title}" has ${authors.length} authors". */
 
 const printBookAuthorsCount = function (title, ...authors) {
-  console.log(`The book ${title} has ${authors.length} authors`);
+  //console.log(`The book ${title} has ${authors.length} authors`);
 };
 
 printBookAuthorsCount(
@@ -315,7 +315,7 @@ printBookAuthorsCount(
 const hasExamplesInJava = function (book) {
   let { programmingLanguage: javaChecker } = book;
   const output = javaChecker === 'Java' || 'no data available';
-  console.log(output);
+  //console.log(output);
 };
 
 /* hasExamplesInJava(books[0]); */
@@ -331,4 +331,16 @@ for (let i = 0; i < books.length; i++) {
 for (let i = 0; i < books.length; i++) {
   books[i].onlineContent ??
     console.log(`${books[i].title} provides no data about its online content`);
+}
+
+//7.1 Logical Assignment operators
+/* 7.1 Some of the book objects from the books array are missing the edition property. Loop over the books array, and assign this property with a number 1 (if it doesn't already exist). Use logical assignment operators. */
+for (let i = 0; i < books.length; i++) {
+  books[i].edition ||= 1;
+}
+
+/* 7.2 Some of the book objects from the books array have the highlighted property, which by default is set to true. Iterate over the books array, and if the thirdParty.goodreads.rating property is less than 4.2, reassign it with false. Use the &&= operator (tip: you may also need the ! operator) */
+
+for (let i = 0; i < books.length; i++) {
+  books[i].highlighted &&= !(books[i].thirdParty.goodreads.rating < 4.2);
 }

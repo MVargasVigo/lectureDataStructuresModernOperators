@@ -170,6 +170,31 @@ const guestCorrect = restaurant.numGuests ?? 10;
 console.log(guestCorrect);
 //The code above should log 0 instead of 10, because 0 is considered truthy for the nullish coalesching operator. If we were to use the exact same code but replacing the ?? with ||, it would log 10, even if the actual number of guests was 0, because the || operator considers 0 a falsy value, and it skips all falsys.
 
+//Logical Assignment Operators
+//Given the following objects:
+const rest1 = {
+  name: 'Capri',
+  numGuests: 20,
+};
+
+const rest2 = {
+  name: 'La Piazza',
+  owner: 'Giovanni Rossi',
+};
+
+//OR assignment operator: it will assign a "default" value to the numGuests property in case it doesn't exist. It works like the short circuiting. If the property exists, it will return it, if it's not, it will skip it and return the other value. As below
+rest1.numGuests ||= 10; //Will return 20
+rest2.numGuests ||= 10; //Will return 10 since it doesn't exist before
+
+rest1.numGuests = 0;
+//Nullish assignment operator: exactly like the nullish coalescing, it works just like the OR operator but including 0s and empty strings. It will only consider nulls and undefineds as falsy
+rest1.numGuests ??= 10; //Will return 0, since it's the actual value of the property.
+rest2.numGuests ??= 10; //Will return 10 since it doesn't exist before
+
+//AND assignment operator: will asign a value to a variable if it is currently truthy. Basically, it will replace the value of an existing variable (unless it is a falsy value. )
+rest1.owner &&= 'ANONYMOUS';
+rest2.owner &&= 'ANONYMOUS';
+
 /*We're building a football betting app (soccer for my American friends 😅)!
 
 Suppose we get data from a web service about a certain game (below). In this challenge we're gonna work with the data. So here are your tasks:
