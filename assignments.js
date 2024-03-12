@@ -309,3 +309,26 @@ printBookAuthorsCount(
   'Gerald Jay Sussman',
   'Julie Sussman (Contributor)'
 );
+
+//5.1 Write a function called hasExamplesInJava that takes a book object from the books array as an argument. This function should return true if the book uses Java, or a string 'no data available' if it uses other language or no programming language at all.
+
+const hasExamplesInJava = function (book) {
+  let { programmingLanguage: javaChecker } = book;
+  const output = javaChecker === 'Java' || 'no data available';
+  console.log(output);
+};
+
+/* hasExamplesInJava(books[0]); */
+
+/* 5.2 Some of the book objects have the onlineContent property, which is either true or false. Loop over the books array, and for the books that provide online content, log to the console a string in this format: "${title}" provides online content. Use short-circuiting. */
+
+for (let i = 0; i < books.length; i++) {
+  books[i].onlineContent &&
+    console.log(`${books[i].title} provides online content`);
+}
+
+/* 6.1 There are objects in the books array that don't have the onlineContent property at all. Loop over the books array, and log a string to the console in this format: "${title}" provides no data about its online content. */
+for (let i = 0; i < books.length; i++) {
+  books[i].onlineContent ??
+    console.log(`${books[i].title} provides no data about its online content`);
+}

@@ -139,14 +139,36 @@ const [pizza, , risotto, ...otherFood] = [
 
 const { sat, ...weekdays } = restaurant.openingHours;
 console.log(weekdays);
+//If we console log the weekdays variable, the result will be an object containing the friday and thursday objects.
 
 //Rest in functions
 const add = function (...numbers) {
   console.log(numbers);
-  //In the code above, the rest operator is passed as a parameter in a function, which means that once the function is called, for example with the following parameters: add(5, 3, 7, 2); the console will log [5, 3, 7, 2]. It will pack the numbers passed as parameters into an array.
+  //In the code above, the rest operator is passed as a parameter in a function, which means that once the function is called, for example with the following parameters: add(5, 3, 7, 2); the console will log [5, 3, 7, 2]. It will pack the numbers passed as parameters into an array. Since it's an array, we can also loop through an array like the following example:
+  let sum = 0;
+  for (let i = 0; i < numbers.length; i++) sum += numbers[i];
+  console.log(sum);
+  //The loop above will print into the console the sum of all the numbers passed as arguments to the add function. It works because when we used the rest parameter, they all get packed into a single array that then gets looped through.
 };
 
-//If we console log the weekdays variable, the result will be an object containing the friday and thursday objects.
+//Short Circuiting
+
+//With ||: It will return the first truthy result from a boolean statement. For example:
+
+console.log(undefined || 0 || '' || 'Hello' || 23 || null);
+//The code above will print out "Hello" to the console. This happens because it is the first truthy value. This is helpful when we want to set default values.
+
+//With &&: it short circuits when the first value is falsy. If it only sees truthy values, it will return the final value. For example:
+
+console.log('Hello' && 23 && null && 'Jonas');
+//The code above will skipp Hello and 23 because they are truthy and stop at null because it is falsy. The logic here is that it will continue if everything is true, but stop if it finds something false because then it wouldn't follow the usual && logic of true & true. Practically, the && short circuit will help when we want to execute code in the second "operand" when the first one is true.
+
+//Nullish Coalescing Operator
+//Works almost the same as the or operator above, but it works with nullish values instead of falsy values. Meaning, it only considers nulls and undefined as false, while 0 and an empty string are also considered truthy. For example:
+restaurant.numGuests = 0;
+const guestCorrect = restaurant.numGuests ?? 10;
+console.log(guestCorrect);
+//The code above should log 0 instead of 10, because 0 is considered truthy for the nullish coalesching operator. If we were to use the exact same code but replacing the ?? with ||, it would log 10, even if the actual number of guests was 0, because the || operator considers 0 a falsy value, and it skips all falsys.
 
 /*We're building a football betting app (soccer for my American friends 😅)!
 
