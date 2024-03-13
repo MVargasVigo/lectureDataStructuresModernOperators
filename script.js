@@ -11,7 +11,7 @@ const restaurant = {
   categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
   starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
   mainMenu: ['Pizza', 'Pasta', 'Risotto'],
-  order: function (starter, main) {
+  order(starter, main) {
     return [this.starterMenu[starter], this.mainMenu[main]];
   },
 
@@ -31,18 +31,13 @@ const restaurant = {
   },
 
   //In the below function, we set an object as an argument and set default values to some of the properties that should be specified when the function gets called.
-  orderDelivery: function ({
-    starterIndex = 1,
-    mainIndex = 0,
-    time = '20:00',
-    address,
-  }) {
+  orderDelivery({ starterIndex = 1, mainIndex = 0, time = '20:00', address }) {
     console.log(
       `Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
     );
   },
 
-  orderPasta: function (ing1, ing2, ing3) {
+  orderPasta(ing1, ing2, ing3) {
     console.log(
       `Here is your delicious pasta with ${ing1}, ${ing2}, and ${ing3}`
     );
@@ -194,3 +189,10 @@ rest2.numGuests ??= 10; //Will return 10 since it doesn't exist before
 //AND assignment operator: will asign a value to a variable if it is currently truthy. Basically, it will replace the value of an existing variable (unless it is a falsy value. )
 rest1.owner &&= 'ANONYMOUS';
 rest2.owner &&= 'ANONYMOUS';
+
+//Looping over arrays: for of. Don't forget to add the "let" or "const" to the item that loops over the array.
+
+//Looping over objects:
+///To get the keys, we can use Object.keys(desiredObject).
+//To get the values, we can use Object.values(desiredObject).
+//To get both, we can use Object.entries(desiredObject).
