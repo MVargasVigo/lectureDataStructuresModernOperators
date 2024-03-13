@@ -196,3 +196,11 @@ rest2.owner &&= 'ANONYMOUS';
 ///To get the keys, we can use Object.keys(desiredObject).
 //To get the values, we can use Object.values(desiredObject).
 //To get both, we can use Object.entries(desiredObject).
+
+//Maps
+
+const rest = new Map();
+rest.set('name', 'Classico Italiano');
+rest.set(1, 'Firenze, Italy');
+rest.set(1, 'Lisbon, Porugal');
+//Study this later

@@ -373,3 +373,57 @@ for (let book of books) {
 for (let author of allAuthors.entries()) {
   console.log(`${author[0] + 1}: ${author[1]}`);
 }
+
+//11 Looping Objects: Object Keys, Values and Entries
+/* 
+11.1 Below is the entries variable that stores an empty array. Use the for-of loop together with the Object.keys() method to loop over the thirdParty.goodreads property (array) of the first book object from the books array. For each key, push a new array that contains that key to the entries array.
+
+In the end, the entries array should be filled with arrays containing keys: */
+
+const entries = [];
+
+const goodReadsKeys = Object.keys(books[0].thirdParty.goodreads);
+
+for (let key of goodReadsKeys) {
+  entries.push(key);
+}
+
+//11.2 Use the for-of loop together with the Object.values() method and Array's entries() method to loop over thirdParty.goodreads property of the first book from the books array. Push each value to the appropriate inner array in the entries array (use index from entries()).
+const goodReadsValues = Object.values(books[0].thirdParty.goodreads);
+
+for (let [i, value] of goodReadsValues.entries()) {
+  entries.push([i, value]);
+}
+console.log(entries);
+//Bug
+
+//15 Working with strings 1
+//15.1 Take the ISBN property of the first book from the books array, and log to the console characters at index 6, 4, 9 and 8. Use bracket notation to access individual characters.
+
+console.log(
+  books[0].ISBN[6],
+  books[0].ISBN[4],
+  books[0].ISBN[9],
+  books[0].ISBN[8]
+);
+
+//15.2 Below is the quote variable that stores a string. Find the index of the word 'chess', and log it to the console.
+const quote =
+  'A computer once beat me at chess, but it was no match for me at kick boxing';
+console.log(quote.indexOf('chess'));
+
+//15.3 Extract the word "boxing" from the same quote string, and log it to the console.
+console.log(quote.slice(quote.lastIndexOf(' ') + 1));
+
+//15.4 Some authors are noted as "(Contributor)", for example "Julie Sussman (Contributor)". Create a function called isContributor that takes an author's name as an argument, and returns either true (if he's a contributor) of false (if he's not a contributor). The string "(Contributor)" is always the last part of the author's name string.
+
+const isContributor = function (author) {
+  if (author.slice(author.lastIndexOf(' ') + 1) === '(Contributor)') {
+    return true;
+  } else return false;
+};
+
+/*Refactored it would be: function isContributor(author) {
+  return author.lastIndexOf('(Contributor)') !== -1;
+  With the code shown above, the function doesn't even slice, it just gets the last index of '(Contributor)' as a whole portion of the string. If it is different from -1 (which means that it is the last index from the string) it returns true.
+}*/
